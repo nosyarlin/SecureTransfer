@@ -1,5 +1,4 @@
 import javax.crypto.Cipher;
-import javax.xml.bind.DatatypeConverter;
 import java.io.*;
 import java.net.Socket;
 import java.nio.ByteBuffer;
@@ -32,15 +31,15 @@ public class ClientWithoutSecurity {
 
 		try {
 			// Prepare cert
-			InputStream fis = new FileInputStream("server.crt");
+			InputStream fis = new FileInputStream("CA.cer");
 			CertificateFactory cf = CertificateFactory.getInstance("X.509");
-			X509Certificate savedCAcert = (X509Certificate)cf.generateCertificate(fis);
-			X509Certificate CAcert;
+			X509Certificate CA = (X509Certificate)cf.generateCertificate(fis);
+			X509Certificate ServerCert;
 
 			System.out.println("Establishing connection to server...");
 
 			// Connect to server and get the input and output streams
-			clientSocket = new Socket("localhost", 4321);
+			clientSocket = new Socket("10.12.67.63", 4321);
 			toServer = new DataOutputStream(clientSocket.getOutputStream());
 			fromServer = new DataInputStream(clientSocket.getInputStream());
 
@@ -65,18 +64,18 @@ public class ClientWithoutSecurity {
 			numBytes = fromServer.readInt();
 			byte[] certBytes = new byte[numBytes];
 			fromServer.readFully(certBytes,0,numBytes);
-			CAcert = (X509Certificate) cf.generateCertificate(new ByteArrayInputStream(certBytes));
+			ServerCert = (X509Certificate) cf.generateCertificate(new ByteArrayInputStream(certBytes));
 
 			// Verify that cert is correct
-			// TODO verifying cert does not work
 			System.out.println("Verifying certificate...");
-			PublicKey publicKey = savedCAcert.getPublicKey();
-			CAcert.checkValidity();
-			//CAcert.verify(publicKey);
+			PublicKey CAKey = CA.getPublicKey();
+			ServerCert.checkValidity();
+			ServerCert.verify(CAKey);
 
 			// Verify nonce
 			System.out.println("Verifying encrypted nonce...");
 			Cipher decipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+			PublicKey publicKey = ServerCert.getPublicKey();
 			decipher.init(Cipher.DECRYPT_MODE, publicKey);
 			byte[] testNonceBytes = decipher.doFinal(encrypted_nonce);
 			byte[] nonceBytes = ByteBuffer.allocate(4).putInt(nonce).array();
