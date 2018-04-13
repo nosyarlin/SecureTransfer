@@ -113,8 +113,6 @@ public class ClientWithoutSecurity {
 			}
 
 			System.out.println("Closing connection...");
-	        toServer.writeInt(2);
-	        toServer.flush();
 
 		} catch (Exception e) {e.printStackTrace();}
 

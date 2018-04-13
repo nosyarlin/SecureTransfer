@@ -105,24 +105,23 @@ public class ServerWithoutSecurity {
 				} else if (packetType == 1) {
 
 					int numBytes = fromClient.readInt();
-					byte [] block = new byte[numBytes];
+					byte[] block = new byte[numBytes];
 					fromClient.readFully(block, 0, numBytes);
 
 					if (numBytes > 0)
 						bufferedFileOutputStream.write(block, 0, numBytes);
 
-				// If the packet is for end of file
-				} else if (packetType == 2) {
+					// close the connection
+					if (numBytes < 117) {
+						System.out.println("Closing connection...");
 
-					System.out.println("Closing connection...");
-
-					if (bufferedFileOutputStream != null) bufferedFileOutputStream.close();
-					if (bufferedFileOutputStream != null) fileOutputStream.close();
-					fromClient.close();
-					toClient.close();
-					connectionSocket.close();
+						if (bufferedFileOutputStream != null) bufferedFileOutputStream.close();
+						if (bufferedFileOutputStream != null) fileOutputStream.close();
+						fromClient.close();
+						toClient.close();
+						connectionSocket.close();
+					}
 				}
-
 			}
 		} catch (Exception e) {e.printStackTrace();}
 
