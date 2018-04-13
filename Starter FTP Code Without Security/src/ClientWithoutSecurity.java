@@ -39,7 +39,7 @@ public class ClientWithoutSecurity {
 			System.out.println("Establishing connection to server...");
 
 			// Connect to server and get the input and output streams
-			clientSocket = new Socket("10.12.67.63", 4321);
+			clientSocket = new Socket("localhost", 4321);
 			toServer = new DataOutputStream(clientSocket.getOutputStream());
 			fromServer = new DataInputStream(clientSocket.getInputStream());
 
@@ -84,10 +84,16 @@ public class ClientWithoutSecurity {
 			if (Arrays.equals(nonceBytes, testNonceBytes)) {
 				System.out.println("Sending file...");
 
+				// Prepare cipher
+				Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+				cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+
 				// Send the filename
 				toServer.writeInt(0);
-				toServer.writeInt(filename.getBytes().length);
-				toServer.write(filename.getBytes());
+				byte[] encryptedName = cipher.doFinal(filename.getBytes());
+
+				toServer.writeInt(encryptedName.length);
+				toServer.write(encryptedName);
 				toServer.flush();
 
 				// Open the file
@@ -97,14 +103,18 @@ public class ClientWithoutSecurity {
 				byte [] fromFileBuffer = new byte[117];
 
 				// Send the file
+				int i = 1;
 				for (boolean fileEnded = false; !fileEnded;) {
+					System.out.println("Sending block " + i);
 					numBytes = bufferedFileInputStream.read(fromFileBuffer);
 					fileEnded = numBytes < fromFileBuffer.length;
 
 					toServer.writeInt(1);
-					toServer.writeInt(numBytes);
-					toServer.write(fromFileBuffer);
+					byte[] encryptedBuffer = cipher.doFinal(fromFileBuffer);
+					toServer.writeInt(encryptedBuffer.length);
+					toServer.write(encryptedBuffer);
 					toServer.flush();
+					i++;
 				}
 				System.out.println("File sent.");
 

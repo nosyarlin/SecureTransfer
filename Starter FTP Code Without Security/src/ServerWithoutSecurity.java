@@ -95,21 +95,24 @@ public class ServerWithoutSecurity {
 					System.out.println("Receiving file...");
 
 					int numBytes = fromClient.readInt();
-					byte [] filename = new byte[numBytes];
-					fromClient.readFully(filename, 0, numBytes);
+					byte[] encryptedName = new byte[numBytes];
+					fromClient.readFully(encryptedName, 0, numBytes);
+					byte[] filename = decipher.doFinal(encryptedName);
 
-					fileOutputStream = new FileOutputStream("recv/"+new String(filename, 0, numBytes));
+					fileOutputStream = new FileOutputStream("recv/"+new String(filename, 0, filename.length));
 					bufferedFileOutputStream = new BufferedOutputStream(fileOutputStream);
 
 				// If the packet is for transferring a chunk of the file
 				} else if (packetType == 1) {
 
 					int numBytes = fromClient.readInt();
-					byte[] block = new byte[numBytes];
-					fromClient.readFully(block, 0, numBytes);
+
+					byte[] encrypted_block = new byte[numBytes];
+					fromClient.readFully(encrypted_block, 0, numBytes);
+					byte[] block = decipher.doFinal(encrypted_block);
 
 					if (numBytes > 0)
-						bufferedFileOutputStream.write(block, 0, numBytes);
+						bufferedFileOutputStream.write(block, 0, block.length);
 
 					// close the connection
 					if (numBytes < 117) {
