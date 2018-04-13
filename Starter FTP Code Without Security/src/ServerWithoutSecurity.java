@@ -1,4 +1,7 @@
+import javax.activation.DataContentHandler;
 import javax.crypto.Cipher;
+import javax.xml.bind.DatatypeConverter;
+import javax.xml.crypto.Data;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -95,11 +98,10 @@ public class ServerWithoutSecurity {
 					System.out.println("Receiving file...");
 
 					int numBytes = fromClient.readInt();
-					byte[] encryptedName = new byte[numBytes];
-					fromClient.readFully(encryptedName, 0, numBytes);
-					byte[] filename = decipher.doFinal(encryptedName);
+					byte[] filename = new byte[numBytes];
+					fromClient.readFully(filename, 0, numBytes);
 
-					fileOutputStream = new FileOutputStream("recv/"+new String(filename, 0, filename.length));
+					fileOutputStream = new FileOutputStream("recv/"+ DatatypeConverter.printBase64Binary(filename));
 					bufferedFileOutputStream = new BufferedOutputStream(fileOutputStream);
 
 				// If the packet is for transferring a chunk of the file

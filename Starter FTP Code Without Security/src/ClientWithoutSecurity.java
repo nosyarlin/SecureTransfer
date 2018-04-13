@@ -1,4 +1,5 @@
 import javax.crypto.Cipher;
+import javax.xml.bind.DatatypeConverter;
 import java.io.*;
 import java.net.Socket;
 import java.nio.ByteBuffer;
@@ -90,10 +91,10 @@ public class ClientWithoutSecurity {
 
 				// Send the filename
 				toServer.writeInt(0);
-				byte[] encryptedName = cipher.doFinal(filename.getBytes());
+				byte[] filenameBytes = filename.getBytes();
 
-				toServer.writeInt(encryptedName.length);
-				toServer.write(encryptedName);
+				toServer.writeInt(filenameBytes.length);
+				toServer.write(filenameBytes);
 				toServer.flush();
 
 				// Open the file
