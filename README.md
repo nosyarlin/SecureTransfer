@@ -1,2 +1,1 @@
-# SecureTransfer
-Programming Assignment 2
+# Secure-File-Transfer

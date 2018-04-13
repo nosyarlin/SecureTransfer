@@ -1,0 +1,125 @@
+import javax.crypto.Cipher;
+import javax.xml.bind.DatatypeConverter;
+import java.io.*;
+import java.net.Socket;
+import java.nio.ByteBuffer;
+import java.security.PublicKey;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
+import java.util.Arrays;
+import java.util.Random;
+
+public class ClientWithoutSecurity {
+
+	public static void main(String[] args) {
+
+    	String filename = "rr.txt";
+
+		int numBytes = 0;
+
+		Socket clientSocket;
+
+        DataOutputStream toServer;
+        DataInputStream fromServer;
+
+    	FileInputStream fileInputStream;
+        BufferedInputStream bufferedFileInputStream;
+
+		long timeStarted = System.nanoTime();
+
+		Random random = new Random();
+		random.setSeed(timeStarted);
+
+		try {
+			// Prepare cert
+			InputStream fis = new FileInputStream("server.crt");
+			CertificateFactory cf = CertificateFactory.getInstance("X.509");
+			X509Certificate savedCAcert = (X509Certificate)cf.generateCertificate(fis);
+			X509Certificate CAcert;
+
+			System.out.println("Establishing connection to server...");
+
+			// Connect to server and get the input and output streams
+			clientSocket = new Socket("localhost", 4321);
+			toServer = new DataOutputStream(clientSocket.getOutputStream());
+			fromServer = new DataInputStream(clientSocket.getInputStream());
+
+			// Send nonce
+			System.out.println("Sending nonce to server...");
+			int nonce = random.nextInt();
+			toServer.writeInt(4);
+			toServer.writeInt(nonce);
+
+			// Receive encrypted nonce
+			System.out.println("Receiving encrypted nonce...");
+			numBytes = fromServer.readInt();
+			byte[] encrypted_nonce = new byte[numBytes];
+			fromServer.read(encrypted_nonce, 0, numBytes);
+
+			// Ask for certification
+			System.out.println("Asking for certificate...");
+			toServer.writeInt(5);
+
+			// Read certificate
+			System.out.println("Receiving certificate...");
+			numBytes = fromServer.readInt();
+			byte[] certBytes = new byte[numBytes];
+			fromServer.readFully(certBytes,0,numBytes);
+			CAcert = (X509Certificate) cf.generateCertificate(new ByteArrayInputStream(certBytes));
+
+			// Verify that cert is correct
+			// TODO verifying cert does not work
+			System.out.println("Verifying certificate...");
+			PublicKey publicKey = savedCAcert.getPublicKey();
+			CAcert.checkValidity();
+			//CAcert.verify(publicKey);
+
+			// Verify nonce
+			System.out.println("Verifying encrypted nonce...");
+			Cipher decipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+			decipher.init(Cipher.DECRYPT_MODE, publicKey);
+			byte[] testNonceBytes = decipher.doFinal(encrypted_nonce);
+			byte[] nonceBytes = ByteBuffer.allocate(4).putInt(nonce).array();
+
+			// If nonce is correct
+			if (Arrays.equals(nonceBytes, testNonceBytes)) {
+				System.out.println("Sending file...");
+
+				// Send the filename
+				toServer.writeInt(0);
+				toServer.writeInt(filename.getBytes().length);
+				toServer.write(filename.getBytes());
+				toServer.flush();
+
+				// Open the file
+				fileInputStream = new FileInputStream(filename);
+				bufferedFileInputStream = new BufferedInputStream(fileInputStream);
+
+				byte [] fromFileBuffer = new byte[117];
+
+				// Send the file
+				for (boolean fileEnded = false; !fileEnded;) {
+					numBytes = bufferedFileInputStream.read(fromFileBuffer);
+					fileEnded = numBytes < fromFileBuffer.length;
+
+					toServer.writeInt(1);
+					toServer.writeInt(numBytes);
+					toServer.write(fromFileBuffer);
+					toServer.flush();
+				}
+				System.out.println("File sent.");
+
+				bufferedFileInputStream.close();
+				fileInputStream.close();
+			}
+
+			System.out.println("Closing connection...");
+	        toServer.writeInt(2);
+	        toServer.flush();
+
+		} catch (Exception e) {e.printStackTrace();}
+
+		long timeTaken = System.nanoTime() - timeStarted;
+		System.out.println("Program took: " + timeTaken/1000000.0 + "ms to run");
+	}
+}
