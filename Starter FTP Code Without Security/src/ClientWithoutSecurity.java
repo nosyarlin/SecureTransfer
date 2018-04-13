@@ -40,7 +40,7 @@ public class ClientWithoutSecurity {
 			System.out.println("Establishing connection to server...");
 
 			// Connect to server and get the input and output streams
-			clientSocket = new Socket("localhost", 4321);
+			clientSocket = new Socket("192.168.2.137", 4321);
 			toServer = new DataOutputStream(clientSocket.getOutputStream());
 			fromServer = new DataInputStream(clientSocket.getInputStream());
 
@@ -108,12 +108,12 @@ public class ClientWithoutSecurity {
 				for (boolean fileEnded = false; !fileEnded;) {
 					System.out.println("Sending block " + i);
 					numBytes = bufferedFileInputStream.read(fromFileBuffer);
-					fileEnded = numBytes < fromFileBuffer.length;
+					fileEnded = numBytes < 117;
 
 					toServer.writeInt(1);
 					byte[] encryptedBuffer = cipher.doFinal(fromFileBuffer);
 					toServer.writeInt(encryptedBuffer.length);
-					toServer.write(encryptedBuffer);
+					toServer.write(encryptedBuffer, 0, encryptedBuffer.length);
 					toServer.flush();
 					i++;
 				}
@@ -124,6 +124,7 @@ public class ClientWithoutSecurity {
 			}
 
 			System.out.println("Closing connection...");
+			toServer.writeInt(2);
 
 		} catch (Exception e) {e.printStackTrace();}
 

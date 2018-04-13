@@ -85,7 +85,7 @@ public class ServerWithoutSecurity {
 				}
 
 				// If the packet is asking for certificate
-				if (packetType == 5) {
+				else if (packetType == 5) {
 					System.out.println("Sending certificate...");
 					byte[] encoded = CAcert.getEncoded();
 					toClient.writeInt(encoded.length);
@@ -93,7 +93,7 @@ public class ServerWithoutSecurity {
 				}
 
 				// If the packet is for transferring the filename
-				if (packetType == 0) {
+				else if (packetType == 0) {
 
 					System.out.println("Receiving file...");
 
@@ -108,24 +108,30 @@ public class ServerWithoutSecurity {
 				} else if (packetType == 1) {
 
 					int numBytes = fromClient.readInt();
-
 					byte[] encrypted_block = new byte[numBytes];
-					fromClient.readFully(encrypted_block, 0, numBytes);
+					int total = 0;
+
+					// keep reading until everything has been received
+					while (total < numBytes) {
+						total += fromClient.read(encrypted_block, total, numBytes-total);
+					}
+
+					// decrypt file
 					byte[] block = decipher.doFinal(encrypted_block);
 
 					if (numBytes > 0)
 						bufferedFileOutputStream.write(block, 0, block.length);
+				}
 
-					// close the connection
-					if (numBytes < 117) {
-						System.out.println("Closing connection...");
+				// if the packet is for closing connection
+				else if (packetType == 2) {
+					System.out.println("Closing connection...");
 
-						if (bufferedFileOutputStream != null) bufferedFileOutputStream.close();
-						if (bufferedFileOutputStream != null) fileOutputStream.close();
-						fromClient.close();
-						toClient.close();
-						connectionSocket.close();
-					}
+					if (bufferedFileOutputStream != null) bufferedFileOutputStream.close();
+					if (bufferedFileOutputStream != null) fileOutputStream.close();
+					fromClient.close();
+					toClient.close();
+					connectionSocket.close();
 				}
 			}
 		} catch (Exception e) {e.printStackTrace();}
