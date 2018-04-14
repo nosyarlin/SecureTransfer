@@ -1,7 +1,7 @@
-import javax.activation.DataContentHandler;
 import javax.crypto.Cipher;
-import javax.xml.bind.DatatypeConverter;
-import javax.xml.crypto.Data;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -56,6 +56,10 @@ public class ServerWithoutSecurity {
 		Cipher decipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
 		decipher.init(Cipher.DECRYPT_MODE, privateKey);
 
+		SecretKeySpec decryptedSecretKey = new SecretKeySpec(new byte[16],"AES");
+		Cipher decipher2 = Cipher.getInstance("AES/CBC/PKCS5Padding");
+
+
 		try {
 			// Create connection
 			welcomeSocket = new ServerSocket(port);
@@ -92,6 +96,22 @@ public class ServerWithoutSecurity {
 					toClient.write(encoded);
 				}
 
+				// If the packet is for verifying message via sessionKey
+				else if(packetType == 6){
+					System.out.println("Recieving Session Key...");
+					int byteSize = fromClient.readInt();
+					byte[] encryptedKey = new byte[byteSize];
+					fromClient.readFully(encryptedKey,0,byteSize);
+
+					// Deciphering the sessino key
+					Cipher decryption = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+					decryption.init(Cipher.DECRYPT_MODE, privateKey);
+					decryptedSecretKey = new SecretKeySpec(decryption.doFinal(encryptedKey),"AES");
+
+					System.out.printf("Session Key is %s%n", decryptedSecretKey.toString());
+					decipher2.init(Cipher.DECRYPT_MODE, decryptedSecretKey,new IvParameterSpec(new byte[16]));
+				}
+
 				// If the packet is for transferring the filename
 				else if (packetType == 0) {
 
@@ -101,7 +121,7 @@ public class ServerWithoutSecurity {
 					byte[] filename = new byte[numBytes];
 					fromClient.readFully(filename, 0, numBytes);
 
-					fileOutputStream = new FileOutputStream("recv/"+ new String(filename, 0, numBytes));
+					fileOutputStream = new FileOutputStream(new String(filename, 0, numBytes));
 					bufferedFileOutputStream = new BufferedOutputStream(fileOutputStream);
 
 				// If the packet is for transferring a chunk of the file
@@ -115,9 +135,11 @@ public class ServerWithoutSecurity {
 					while (total < numBytes) {
 						total += fromClient.read(encrypted_block, total, numBytes-total);
 					}
-
 					// decrypt file
-					byte[] block = decipher.doFinal(encrypted_block);
+					// CP2
+					byte[] block = decipher2.doFinal(encrypted_block);
+					// CP1
+					// byte[] block = decipher.doFinal(encrypted_block);
 
 					if (numBytes > 0)
 						bufferedFileOutputStream.write(block, 0, block.length);
