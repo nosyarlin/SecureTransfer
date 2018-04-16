@@ -145,16 +145,17 @@ public class ClientCP2 {
 				fileInputStream.close();
 			}
 
-			System.out.println("Closing connection...");
 			toServer.writeInt(2);
 			acknowledgement = fromServer.readInt();
+			if(acknowledgement == 2){
+				System.out.println("Closing connection...");
+			}
+
 
 		} catch (Exception e) {e.printStackTrace();}
 
-		if(acknowledgement ==2 )
-		{
-			long timeTaken = System.nanoTime() - timeStarted;
-			System.out.println("Program took: " + timeTaken/1000000.0 + "ms to run");
-		}
+
+		long timeTaken = System.nanoTime() - timeStarted;
+		System.out.println("Program took: " + timeTaken/1000000.0 + "ms to run");
 	}
 }
