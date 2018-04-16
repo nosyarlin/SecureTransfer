@@ -16,7 +16,8 @@ public class ClientCP1 {
 
 	public static void main(String[] args) {
 
-    	String filename = "rr.txt";
+		String filename = "rr.txt";
+    	String file = "C:\\Users\\Kim\\Desktop\\SecureTransfer\\Starter FTP Code Without Security\\rr.txt";
 
 		int numBytes = 0;
 
@@ -103,7 +104,7 @@ public class ClientCP1 {
 				toServer.flush();
 
 				// Open the file
-				fileInputStream = new FileInputStream(filename);
+				fileInputStream = new FileInputStream(file);
 				bufferedFileInputStream = new BufferedInputStream(fileInputStream);
 
 				byte [] fromFileBuffer = new byte[117];

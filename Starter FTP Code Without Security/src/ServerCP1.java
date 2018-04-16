@@ -102,7 +102,7 @@ public class ServerCP1 {
 					byte[] encryptedKey = new byte[byteSize];
 					fromClient.readFully(encryptedKey,0,byteSize);
 
-					// Deciphering the sessino key
+					// Deciphering the session key
 					Cipher decryption = Cipher.getInstance("RSA/ECB/PKCS1Padding");
 					decryption.init(Cipher.DECRYPT_MODE, privateKey);
 					decryptedSecretKey = new SecretKeySpec(decryption.doFinal(encryptedKey),"AES");
