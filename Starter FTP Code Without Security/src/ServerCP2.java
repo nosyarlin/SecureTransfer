@@ -48,15 +48,15 @@ public class ServerCP2 {
 		PrivateKey privateKey = keyFactory.generatePrivate(keySpec);
 
 		// Prepare cipher
-		Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-		cipher.init(Cipher.ENCRYPT_MODE,  privateKey);
+		Cipher cipherRSA = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+		cipherRSA.init(Cipher.ENCRYPT_MODE,  privateKey);
 
 		// Prepare decipher
-		Cipher decipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-		decipher.init(Cipher.DECRYPT_MODE, privateKey);
+		Cipher decipherRSA = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+		decipherRSA.init(Cipher.DECRYPT_MODE, privateKey);
 
-		SecretKeySpec decryptedSecretKey = new SecretKeySpec(new byte[16],"AES");
-		Cipher decipher2 = Cipher.getInstance("AES/CBC/PKCS5Padding");
+		SecretKeySpec decryptedSecretKey;
+		Cipher decipherAES = Cipher.getInstance("AES/CBC/PKCS5Padding");
 
 
 		try {
@@ -79,7 +79,7 @@ public class ServerCP2 {
 					// encrypt the nonce
 					int nonce = fromClient.readInt();
 					byte[] nonceByte = ByteBuffer.allocate(4).putInt(nonce).array();
-					byte[] encrypted = cipher.doFinal(nonceByte);
+					byte[] encrypted = cipherRSA.doFinal(nonceByte);
 
 					// return encrypted nonce
 					System.out.println("Returning encrypted nonce...");
@@ -95,20 +95,17 @@ public class ServerCP2 {
 					toClient.write(encoded);
 				}
 
-				// If the packet is for verifying message via sessionKey
+				// If the packet is for receiving sessionKey
 				else if(packetType == 6){
 					System.out.println("Recieving Session Key...");
 					int byteSize = fromClient.readInt();
 					byte[] encryptedKey = new byte[byteSize];
 					fromClient.readFully(encryptedKey,0,byteSize);
 
-					// Deciphering the sessino key
-					Cipher decryption = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-					decryption.init(Cipher.DECRYPT_MODE, privateKey);
-					decryptedSecretKey = new SecretKeySpec(decryption.doFinal(encryptedKey),"AES");
-
+					// Deciphering the session key
+					decryptedSecretKey = new SecretKeySpec(decipherRSA.doFinal(encryptedKey),"AES");
 					System.out.printf("Session Key is %s%n", decryptedSecretKey.toString());
-					decipher2.init(Cipher.DECRYPT_MODE, decryptedSecretKey,new IvParameterSpec(new byte[16]));
+					decipherAES.init(Cipher.DECRYPT_MODE, decryptedSecretKey,new IvParameterSpec(new byte[16]));
 				}
 
 				// If the packet is for transferring the filename
@@ -134,11 +131,9 @@ public class ServerCP2 {
 					while (total < numBytes) {
 						total += fromClient.read(encrypted_block, total, numBytes-total);
 					}
+
 					// decrypt file
-					// CP2
-					//byte[] block = decipher2.doFinal(encrypted_block);
-					// CP1
-					byte[] block = decipher.doFinal(encrypted_block);
+					byte[] block = decipherAES.doFinal(encrypted_block);
 
 					if (numBytes > 0)
 						bufferedFileOutputStream.write(block, 0, block.length);

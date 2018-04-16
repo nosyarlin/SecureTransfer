@@ -97,7 +97,7 @@ public class ServerCP1 {
 					byte[] filename = new byte[numBytes];
 					fromClient.readFully(filename, 0, numBytes);
 
-					fileOutputStream = new FileOutputStream(new String(filename, 0, numBytes));
+					fileOutputStream = new FileOutputStream("recv/" + new String(filename, 0, numBytes));
 					bufferedFileOutputStream = new BufferedOutputStream(fileOutputStream);
 
 				// If the packet is for transferring a chunk of the file
