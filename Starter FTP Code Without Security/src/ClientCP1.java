@@ -14,20 +14,19 @@ import java.util.Random;
 
 public class ClientCP1 {
 
-	public static void main(String[] args) {
-
-		String filename = "rr.txt";
-    	String file = "C:\\Users\\Kim\\Desktop\\SecureTransfer\\Starter FTP Code Without Security\\rr.txt";
+	public static void run(String filename, String file) {
+		//String filename = "rr.txt";
+		//String file = "C:\\Users\\Kim\\Desktop\\SecureTransfer\\Starter FTP Code Without Security\\rr.txt";
 
 		int numBytes = 0;
 
 		Socket clientSocket;
 
-        DataOutputStream toServer;
-        DataInputStream fromServer;
+		DataOutputStream toServer;
+		DataInputStream fromServer;
 
-    	FileInputStream fileInputStream;
-        BufferedInputStream bufferedFileInputStream;
+		FileInputStream fileInputStream;
+		BufferedInputStream bufferedFileInputStream;
 
 		int acknowledgement = 0;
 
@@ -43,7 +42,7 @@ public class ClientCP1 {
 			X509Certificate CA = (X509Certificate)cf.generateCertificate(fis);
 			X509Certificate ServerCert;
 
-			System.out.println("Establishing connection to server...");
+			//System.out.println("Establishing connection to server...");
 
 			// Connect to server and get the input and output streams
 			clientSocket = new Socket("10.12.90.176", 4321);
@@ -51,36 +50,36 @@ public class ClientCP1 {
 			fromServer = new DataInputStream(clientSocket.getInputStream());
 
 			// Send nonce
-			System.out.println("Sending nonce to server...");
+			//System.out.println("Sending nonce to server...");
 			int nonce = random.nextInt();
 			toServer.writeInt(4);
 			toServer.writeInt(nonce);
 
 			// Receive encrypted nonce
-			System.out.println("Receiving encrypted nonce...");
+			//System.out.println("Receiving encrypted nonce...");
 			numBytes = fromServer.readInt();
 			byte[] encrypted_nonce = new byte[numBytes];
 			fromServer.read(encrypted_nonce, 0, numBytes);
 
 			// Ask for certification
-			System.out.println("Asking for certificate...");
+			//System.out.println("Asking for certificate...");
 			toServer.writeInt(5);
 
 			// Read certificate
-			System.out.println("Receiving certificate...");
+			//System.out.println("Receiving certificate...");
 			numBytes = fromServer.readInt();
 			byte[] certBytes = new byte[numBytes];
 			fromServer.readFully(certBytes,0,numBytes);
 			ServerCert = (X509Certificate) cf.generateCertificate(new ByteArrayInputStream(certBytes));
 
 			// Verify that cert is correct
-			System.out.println("Verifying certificate...");
+			//System.out.println("Verifying certificate...");
 			PublicKey CAKey = CA.getPublicKey();
 			ServerCert.checkValidity();
 			ServerCert.verify(CAKey);
 
 			// Verify nonce
-			System.out.println("Verifying encrypted nonce...");
+			//System.out.println("Verifying encrypted nonce...");
 			Cipher decipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
 			PublicKey publicKey = ServerCert.getPublicKey();
 			decipher.init(Cipher.DECRYPT_MODE, publicKey);
@@ -89,7 +88,7 @@ public class ClientCP1 {
 
 			// If nonce is correct
 			if (Arrays.equals(nonceBytes, testNonceBytes)) {
-				System.out.println("Sending file...");
+				//System.out.println("Sending file...");
 
 				// Prepare cipher
 				Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
@@ -112,7 +111,7 @@ public class ClientCP1 {
 				// Send the file
 				int i = 1;
 				for (boolean fileEnded = false; !fileEnded;) {
-					System.out.println("Sending block " + i);
+					//System.out.println("Sending block " + i);
 					numBytes = bufferedFileInputStream.read(fromFileBuffer);
 					fileEnded = numBytes < 117;
 
@@ -123,7 +122,7 @@ public class ClientCP1 {
 					toServer.flush();
 					i++;
 				}
-				System.out.println("File sent.");
+				//System.out.println("File sent.");
 
 				bufferedFileInputStream.close();
 				fileInputStream.close();
@@ -131,12 +130,28 @@ public class ClientCP1 {
 			toServer.writeInt(2);
 			acknowledgement = fromServer.readInt();
 			if(acknowledgement == 2){
-				System.out.println("Closing connection...");
+				//System.out.println("Closing connection...");
 			}
 		} catch (Exception e) {e.printStackTrace();}
 
 		long timeTaken = System.nanoTime() - timeStarted;
-		System.out.println("Program took: " + timeTaken/1000000.0 + "ms to run");
+		//System.out.println("Program took: " + timeTaken/1000000.0 + "ms to run");
+		System.out.printf(timeTaken/1000000.0 + "\n");
+	}
 
+	public static void main(String[] args) throws Exception {
+		String precursor = "C:\\Users\\Kim\\Desktop\\SecureTransfer\\Starter FTP Code Without Security\\testfiles\\";
+
+		File dir = new File(precursor);
+		File[] directoryListing = dir.listFiles();
+		if (directoryListing != null) {
+			int i = 0;
+			for (File child : directoryListing) {
+				i++;
+				System.out.printf(child.length()/1024 + ",");
+				run(child.getName(), precursor + child.getName());
+				Thread.sleep(1000);
+			}
+		}
 	}
 }
