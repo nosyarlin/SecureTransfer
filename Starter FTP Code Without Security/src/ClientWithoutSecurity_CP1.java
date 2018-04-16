@@ -78,21 +78,6 @@ public class ClientWithoutSecurity {
 			ServerCert.checkValidity();
 			ServerCert.verify(CAKey);
 
-			// Generate sessionKey
-/*			System.out.println("Generating Session Key...");
-			KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
-			SecureRandom secureRandom = new SecureRandom();
-			keyGenerator.init(secureRandom);
-			SecretKey sessionKey = keyGenerator.generateKey();
-			Cipher cipher2 = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-			cipher2.init(Cipher.ENCRYPT_MODE, ServerCert.getPublicKey());
-			byte[] encryptedSessionKey = cipher2.doFinal(sessionKey.getEncoded());
-
-			System.out.println("Sending Session Key " + sessionKey.toString() );
-			toServer.writeInt(6);
-			toServer.writeInt(encryptedSessionKey.length);
-			toServer.write(encryptedSessionKey);*/
-
 			// Verify nonce
 			System.out.println("Verifying encrypted nonce...");
 			Cipher decipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
