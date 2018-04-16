@@ -17,8 +17,7 @@ import java.security.spec.PKCS8EncodedKeySpec;
 
 public class ServerCP1 {
 
-	public static void main(String[] args) throws Exception {
-
+	public static void run() throws Exception{
 		int port = 4321;
 
 		ServerSocket welcomeSocket;
@@ -100,7 +99,7 @@ public class ServerCP1 {
 					fileOutputStream = new FileOutputStream("recv/" + new String(filename, 0, numBytes));
 					bufferedFileOutputStream = new BufferedOutputStream(fileOutputStream);
 
-				// If the packet is for transferring a chunk of the file
+					// If the packet is for transferring a chunk of the file
 				} else if (packetType == 1) {
 
 					int numBytes = fromClient.readInt();
@@ -132,7 +131,12 @@ public class ServerCP1 {
 				}
 			}
 		} catch (Exception e) {e.printStackTrace();}
+	}
 
+	public static void main(String[] args) throws Exception {
+		for (int i = 0; i < 351; i++) {
+			run();
+		}
 	}
 
 }
