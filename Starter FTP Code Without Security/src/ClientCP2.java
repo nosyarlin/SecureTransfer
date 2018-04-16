@@ -1,8 +1,6 @@
-<<<<<<< HEAD
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import javax.crypto.spec.IvParameterSpec;
 import java.io.*;
 import java.net.Socket;
 import java.nio.ByteBuffer;
@@ -108,9 +106,8 @@ public class ClientCP2 {
 				toServer.writeInt(encryptedSessionKey.length);
 				toServer.write(encryptedSessionKey);
 
-				System.out.println("Sending file...");
-
 				// Send the filename
+                System.out.println("Sending file...");
 				toServer.writeInt(0);
 				byte[] filenameBytes = filename.getBytes();
 

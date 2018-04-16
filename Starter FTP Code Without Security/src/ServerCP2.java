@@ -97,14 +97,13 @@ public class ServerCP2 {
 
 				// If the packet is for receiving sessionKey
 				else if(packetType == 6){
-					System.out.println("Recieving Session Key...");
+					System.out.println("Receiving Session Key...");
 					int byteSize = fromClient.readInt();
 					byte[] encryptedKey = new byte[byteSize];
 					fromClient.readFully(encryptedKey,0,byteSize);
 
 					// Deciphering the session key
 					decryptedSecretKey = new SecretKeySpec(decipherRSA.doFinal(encryptedKey),"AES");
-					System.out.printf("Session Key is %s%n", decryptedSecretKey.toString());
 					decipherAES.init(Cipher.DECRYPT_MODE, decryptedSecretKey,new IvParameterSpec(new byte[16]));
 				}
 
