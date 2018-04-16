@@ -41,7 +41,7 @@ public class ClientCP2 {
 			X509Certificate CA = (X509Certificate)cf.generateCertificate(fis);
 			X509Certificate ServerCert;
 
-			System.out.println("Establishing connection to server...");
+			//System.out.println("Establishing connection to server...");
 
 			// Connect to server and get the input and output streams
 			clientSocket = new Socket("10.12.90.176", 4321);
@@ -138,7 +138,7 @@ public class ClientCP2 {
 					toServer.flush();
 					i++;
 				}
-				System.out.println("File sent.");
+				//System.out.println("File sent.");
 
 				bufferedFileInputStream.close();
 				fileInputStream.close();
@@ -147,7 +147,7 @@ public class ClientCP2 {
 			toServer.writeInt(2);
 			acknowledgement = fromServer.readInt();
 			if(acknowledgement == 2){
-				System.out.println("Closing connection...");
+				//System.out.println("Closing connection...");
 			}
 
 
@@ -155,20 +155,20 @@ public class ClientCP2 {
 
 
 		long timeTaken = System.nanoTime() - timeStarted;
-		System.out.println("Program took: " + timeTaken/1000000.0 + "ms to run\n\n\n");
+		System.out.printf(timeTaken/1000000.0 + "\n");
 	}
 
 	public static void main(String[] args) throws Exception {
-		String precursor = "C:\\Users\\Kim\\Desktop\\SecureTransfer\\Starter FTP Code Without Security\\";
+		String precursor = "C:\\Users\\Kim\\Desktop\\SecureTransfer\\Starter FTP Code Without Security\\testfiles\\";
 
-		File dir = new File("testfiles");
+		File dir = new File(precursor);
 		File[] directoryListing = dir.listFiles();
 		if (directoryListing != null) {
 			int i = 0;
 			for (File child : directoryListing) {
 				i++;
-				System.out.println("Test " + String.valueOf(i) + " with filesize " + child.length()/1024 + "kb :");
-				run(child.getName(), "testfiles/" + child.getName());
+				System.out.printf(child.length()/1024 + " , ");
+				run(child.getName(), precursor + child.getName());
 				Thread.sleep(1000);
 			}
 		}
