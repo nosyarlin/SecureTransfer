@@ -136,9 +136,9 @@ public class ServerWithoutSecurity {
 					}
 					// decrypt file
 					// CP2
-					byte[] block = decipher2.doFinal(encrypted_block);
+					//byte[] block = decipher2.doFinal(encrypted_block);
 					// CP1
-					// byte[] block = decipher.doFinal(encrypted_block);
+					byte[] block = decipher.doFinal(encrypted_block);
 
 					if (numBytes > 0)
 						bufferedFileOutputStream.write(block, 0, block.length);
