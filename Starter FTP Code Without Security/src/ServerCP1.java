@@ -88,25 +88,6 @@ public class ServerCP1 {
 					toClient.write(encoded);
 				}
 
-<<<<<<< HEAD
-				// If the packet is for verifying message via sessionKey
-				else if(packetType == 6){
-					System.out.println("Recieving Session Key...");
-					int byteSize = fromClient.readInt();
-					byte[] encryptedKey = new byte[byteSize];
-					fromClient.readFully(encryptedKey,0,byteSize);
-
-					// Deciphering the session key
-					Cipher decryption = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-					decryption.init(Cipher.DECRYPT_MODE, privateKey);
-					decryptedSecretKey = new SecretKeySpec(decryption.doFinal(encryptedKey),"AES");
-
-					System.out.printf("Session Key is %s%n", decryptedSecretKey.toString());
-					decipher2.init(Cipher.DECRYPT_MODE, decryptedSecretKey,new IvParameterSpec(new byte[16]));
-				}
-
-=======
->>>>>>> 13410be6443f6c055a1b2acec72ae46b7f0f64d7
 				// If the packet is for transferring the filename
 				else if (packetType == 0) {
 
