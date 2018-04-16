@@ -40,7 +40,7 @@ public class ClientWithoutSecurity {
 			System.out.println("Establishing connection to server...");
 
 			// Connect to server and get the input and output streams
-			clientSocket = new Socket("192.168.2.137", 4321);
+			clientSocket = new Socket("10.12.90.176", 4321);
 			toServer = new DataOutputStream(clientSocket.getOutputStream());
 			fromServer = new DataInputStream(clientSocket.getInputStream());
 

@@ -126,6 +126,7 @@ public class ServerWithoutSecurity {
 				// if the packet is for closing connection
 				else if (packetType == 2) {
 					System.out.println("Closing connection...");
+					toClient.writeInt(2);
 
 					if (bufferedFileOutputStream != null) bufferedFileOutputStream.close();
 					if (bufferedFileOutputStream != null) fileOutputStream.close();
