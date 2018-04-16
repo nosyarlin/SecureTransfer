@@ -2,31 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="472936db-8078-4f1a-b41c-918460d43955" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/CA.cer" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/README.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/S1_Generate_certificate_request.pdf" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/S2_Certificate_verification.pdf" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SecureFileTransferProject2018Release.pdf" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Starter FTP Code Without Security/.idea/misc.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Starter FTP Code Without Security/.idea/modules.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Starter FTP Code Without Security/.idea/workspace.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Starter FTP Code Without Security/CA.cer" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Starter FTP Code Without Security/Starter FTP Code Without Security.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Starter FTP Code Without Security/out/production/Starter FTP Code Without Security/ClientWithoutSecurity.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Starter FTP Code Without Security/out/production/Starter FTP Code Without Security/ServerWithoutSecurity.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Starter FTP Code Without Security/privateServer.der" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Starter FTP Code Without Security/privateServer.pem" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Starter FTP Code Without Security/recv/C:/Users/Kim/Desktop/Term 5/50.005 Computer System Engineering/Programming Assignment/Assignment 2/SecureTransfer/Starter FTP Code Without Security/rr.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Starter FTP Code Without Security/recv/rr.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Starter FTP Code Without Security/rr.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Starter FTP Code Without Security/server.crt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Starter FTP Code Without Security/server.csr" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Starter FTP Code Without Security/src/ClientWithoutSecurity.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Starter FTP Code Without Security/src/ServerWithoutSecurity.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/privateServer.der" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/privateServer.pem" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/server.crt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/server.csr" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/Starter FTP Code Without Security/src/ClientWithoutSecurity.java" afterPath="$PROJECT_DIR$/Starter FTP Code Without Security/src/ClientWithoutSecurity.java" />
+      <change beforePath="$PROJECT_DIR$/Starter FTP Code Without Security/src/ServerWithoutSecurity.java" afterPath="$PROJECT_DIR$/Starter FTP Code Without Security/src/ServerWithoutSecurity.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="ClientWithoutSecurity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Starter FTP Code Without Security/src/ClientWithoutSecurity.java">
+      <file leaf-file-name="ServerWithoutSecurity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Starter FTP Code Without Security/src/ServerWithoutSecurity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="18" column="103" lean-forward="false" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="103" />
+            <state relative-caret-position="281">
+              <caret line="124" column="72" lean-forward="true" selection-start-line="124" selection-start-column="72" selection-end-line="124" selection-end-column="72" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -49,11 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ServerWithoutSecurity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Starter FTP Code Without Security/src/ServerWithoutSecurity.java">
+      <file leaf-file-name="ClientWithoutSecurity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Starter FTP Code Without Security/src/ClientWithoutSecurity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="573">
-              <caret line="152" column="45" lean-forward="true" selection-start-line="152" selection-start-column="45" selection-end-line="152" selection-end-column="45" />
+            <state relative-caret-position="1256">
+              <caret line="108" column="58" lean-forward="false" selection-start-line="108" selection-start-column="58" selection-end-line="108" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -74,8 +52,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Starter FTP Code Without Security/src/ClientWithoutSecurity.java" />
+        <option value="$PROJECT_DIR$/Starter FTP Code Without Security/rr.txt" />
         <option value="$PROJECT_DIR$/Starter FTP Code Without Security/src/ServerWithoutSecurity.java" />
+        <option value="$PROJECT_DIR$/Starter FTP Code Without Security/src/ClientWithoutSecurity.java" />
       </list>
     </option>
   </component>
@@ -99,9 +78,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
-      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -118,12 +96,6 @@
               <item name="SecureTransfer" type="b2602c69:ProjectViewProjectNode" />
               <item name="SecureTransfer" type="462c0819:PsiDirectoryNode" />
               <item name="Starter FTP Code Without Security" type="462c0819:PsiDirectoryNode" />
-              <item name="recv" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SecureTransfer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SecureTransfer" type="462c0819:PsiDirectoryNode" />
-              <item name="Starter FTP Code Without Security" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -131,6 +103,7 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -138,7 +111,16 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Kim\Desktop\SecureTransfer\Starter FTP Code Without Security\recv" />
+      <recent name="C:\Users\Kim\Desktop\SecureTransfer\Starter FTP Code Without Security" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Kim\Desktop\SecureTransfer\Starter FTP Code Without Security" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -152,7 +134,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ServerWithoutSecurity">
+  <component name="RunManager" selected="Application.ClientWithoutSecurity">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -268,8 +250,8 @@
     </list>
     <recent_temporary>
       <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Application.ServerWithoutSecurity" />
-        <item index="1" class="java.lang.String" itemvalue="Application.ClientWithoutSecurity" />
+        <item index="0" class="java.lang.String" itemvalue="Application.ClientWithoutSecurity" />
+        <item index="1" class="java.lang.String" itemvalue="Application.ServerWithoutSecurity" />
       </list>
     </recent_temporary>
   </component>
@@ -305,7 +287,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12447917" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25729167" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -316,19 +298,65 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912844" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32912844" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912844" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="CP2" />
+    <option name="LAST_COMMIT_MESSAGE" value="CP2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Starter FTP Code Without Security/src/ServerWithoutSecurity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Starter FTP Code Without Security/src/ClientWithoutSecurity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2350">
+          <caret line="107" column="59" lean-forward="false" selection-start-line="107" selection-start-column="59" selection-end-line="107" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Starter FTP Code Without Security/src/ServerWithoutSecurity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Starter FTP Code Without Security/recv/rr.txt" />
+    <entry file="file://$PROJECT_DIR$/Starter FTP Code Without Security/rr.txt" />
+    <entry file="file://$PROJECT_DIR$/Starter FTP Code Without Security/src/ClientWithoutSecurity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2675">
+          <caret line="107" column="59" lean-forward="false" selection-start-line="107" selection-start-column="59" selection-end-line="107" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Starter FTP Code Without Security/src/ClientWithoutSecurity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -356,20 +384,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Starter FTP Code Without Security/src/ClientWithoutSecurity.java">
+    <entry file="file://$PROJECT_DIR$/Starter FTP Code Without Security/recv/rr.txt" />
+    <entry file="file://$PROJECT_DIR$/Starter FTP Code Without Security/rr.txt" />
+    <entry file="file://$PROJECT_DIR$/Starter FTP Code Without Security/recv/rr.txt" />
+    <entry file="file://$PROJECT_DIR$/Starter FTP Code Without Security/src/ServerWithoutSecurity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="18" column="103" lean-forward="false" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="103" />
+        <state relative-caret-position="281">
+          <caret line="124" column="72" lean-forward="true" selection-start-line="124" selection-start-column="72" selection-end-line="124" selection-end-column="72" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Starter FTP Code Without Security/src/ServerWithoutSecurity.java">
+    <entry file="file://$PROJECT_DIR$/Starter FTP Code Without Security/src/ClientWithoutSecurity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
-          <caret line="152" column="45" lean-forward="true" selection-start-line="152" selection-start-column="45" selection-end-line="152" selection-end-column="45" />
+        <state relative-caret-position="1256">
+          <caret line="108" column="58" lean-forward="false" selection-start-line="108" selection-start-column="58" selection-end-line="108" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

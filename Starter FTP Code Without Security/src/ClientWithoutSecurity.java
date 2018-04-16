@@ -29,6 +29,8 @@ public class ClientWithoutSecurity {
     	FileInputStream fileInputStream;
         BufferedInputStream bufferedFileInputStream;
 
+		int acknowledgement = 0;
+
 		long timeStarted = System.nanoTime();
 
 		Random random = new Random();
@@ -44,7 +46,7 @@ public class ClientWithoutSecurity {
 			System.out.println("Establishing connection to server...");
 
 			// Connect to server and get the input and output streams
-			clientSocket = new Socket("localhost", 4321);
+			clientSocket = new Socket("10.12.90.176", 4321);
 			toServer = new DataOutputStream(clientSocket.getOutputStream());
 			fromServer = new DataInputStream(clientSocket.getInputStream());
 
@@ -78,7 +80,7 @@ public class ClientWithoutSecurity {
 			ServerCert.verify(CAKey);
 
 			// Generate sessionKey
-			System.out.println("Generating Session Key...");
+/*			System.out.println("Generating Session Key...");
 			KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
 			SecureRandom secureRandom = new SecureRandom();
 			keyGenerator.init(secureRandom);
@@ -90,7 +92,7 @@ public class ClientWithoutSecurity {
 			System.out.println("Sending Session Key " + sessionKey.toString() );
 			toServer.writeInt(6);
 			toServer.writeInt(encryptedSessionKey.length);
-			toServer.write(encryptedSessionKey);
+			toServer.write(encryptedSessionKey);*/
 
 			// Verify nonce
 			System.out.println("Verifying encrypted nonce...");
@@ -105,8 +107,8 @@ public class ClientWithoutSecurity {
 				System.out.println("Sending file...");
 
 				// Prepare cipher
-				Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-				cipher.init(Cipher.ENCRYPT_MODE, sessionKey,new IvParameterSpec(new byte[16]));
+				Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+				cipher.init(Cipher.ENCRYPT_MODE, publicKey);
 
 				// Send the filename
 				toServer.writeInt(0);
@@ -144,10 +146,14 @@ public class ClientWithoutSecurity {
 
 			System.out.println("Closing connection...");
 			toServer.writeInt(2);
+			acknowledgement = fromServer.readInt();
 
 		} catch (Exception e) {e.printStackTrace();}
 
-		long timeTaken = System.nanoTime() - timeStarted;
-		System.out.println("Program took: " + timeTaken/1000000.0 + "ms to run");
+		if(acknowledgement ==2 )
+		{
+			long timeTaken = System.nanoTime() - timeStarted;
+			System.out.println("Program took: " + timeTaken/1000000.0 + "ms to run");
+		}
 	}
 }
