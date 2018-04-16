@@ -34,9 +34,6 @@ public class ServerCP1 {
 		CertificateFactory cf = CertificateFactory.getInstance("X.509");
 		X509Certificate CAcert =(X509Certificate)cf.generateCertificate(fis);
 
-		// Prepare public key
-		PublicKey publicKey = CAcert.getPublicKey();
-
 		// Prepare private key
 		String privateKeyFileName = "privateServer.der";
 		Path path = Paths.get(privateKeyFileName);
@@ -54,10 +51,6 @@ public class ServerCP1 {
 		// Prepare decipher
 		Cipher decipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
 		decipher.init(Cipher.DECRYPT_MODE, privateKey);
-
-		SecretKeySpec decryptedSecretKey = new SecretKeySpec(new byte[16],"AES");
-		Cipher decipher2 = Cipher.getInstance("AES/CBC/PKCS5Padding");
-
 
 		try {
 			// Create connection
@@ -95,6 +88,7 @@ public class ServerCP1 {
 					toClient.write(encoded);
 				}
 
+<<<<<<< HEAD
 				// If the packet is for verifying message via sessionKey
 				else if(packetType == 6){
 					System.out.println("Recieving Session Key...");
@@ -111,6 +105,8 @@ public class ServerCP1 {
 					decipher2.init(Cipher.DECRYPT_MODE, decryptedSecretKey,new IvParameterSpec(new byte[16]));
 				}
 
+=======
+>>>>>>> 13410be6443f6c055a1b2acec72ae46b7f0f64d7
 				// If the packet is for transferring the filename
 				else if (packetType == 0) {
 
@@ -120,7 +116,7 @@ public class ServerCP1 {
 					byte[] filename = new byte[numBytes];
 					fromClient.readFully(filename, 0, numBytes);
 
-					fileOutputStream = new FileOutputStream(new String(filename, 0, numBytes));
+					fileOutputStream = new FileOutputStream("recv/" + new String(filename, 0, numBytes));
 					bufferedFileOutputStream = new BufferedOutputStream(fileOutputStream);
 
 				// If the packet is for transferring a chunk of the file
@@ -134,10 +130,8 @@ public class ServerCP1 {
 					while (total < numBytes) {
 						total += fromClient.read(encrypted_block, total, numBytes-total);
 					}
+
 					// decrypt file
-					// CP2
-					//byte[] block = decipher2.doFinal(encrypted_block);
-					// CP1
 					byte[] block = decipher.doFinal(encrypted_block);
 
 					if (numBytes > 0)
