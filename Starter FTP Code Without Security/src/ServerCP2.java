@@ -17,8 +17,7 @@ import java.security.spec.PKCS8EncodedKeySpec;
 
 public class ServerCP2 {
 
-	public static void main(String[] args) throws Exception {
-
+	public static void run() throws Exception {
 		int port = 4321;
 
 		ServerSocket welcomeSocket;
@@ -119,7 +118,7 @@ public class ServerCP2 {
 					fileOutputStream = new FileOutputStream(new String(filename, 0, numBytes));
 					bufferedFileOutputStream = new BufferedOutputStream(fileOutputStream);
 
-				// If the packet is for transferring a chunk of the file
+					// If the packet is for transferring a chunk of the file
 				} else if (packetType == 1) {
 
 					int numBytes = fromClient.readInt();
@@ -140,7 +139,7 @@ public class ServerCP2 {
 
 				// if the packet is for closing connection
 				else if (packetType == 2) {
-					System.out.println("Closing connection...");
+					System.out.println("Closing connection...\n\n\n");
 					toClient.writeInt(2);
 
 					if (bufferedFileOutputStream != null) bufferedFileOutputStream.close();
@@ -148,10 +147,17 @@ public class ServerCP2 {
 					fromClient.close();
 					toClient.close();
 					connectionSocket.close();
+					welcomeSocket.close();
 				}
 			}
 		} catch (Exception e) {e.printStackTrace();}
 
+	}
+
+	public static void main(String[] args) throws Exception {
+		for (int i = 0; i < 351; i++) {
+			run();
+		}
 	}
 
 }

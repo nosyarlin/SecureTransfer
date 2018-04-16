@@ -13,20 +13,19 @@ import java.util.Random;
 
 public class ClientCP2 {
 
-	public static void main(String[] args) {
-
-		String filename = "rr.txt";
-		String file = "C:\\Users\\Kim\\Desktop\\SecureTransfer\\Starter FTP Code Without Security\\rr.txt";
+	public static void run(String filename, String file) {
+		//String filename = "rr.txt";
+		//String file = "C:\\Users\\Kim\\Desktop\\SecureTransfer\\Starter FTP Code Without Security\\rr.txt";
 
 		int numBytes = 0;
 
 		Socket clientSocket;
 
-        DataOutputStream toServer;
-        DataInputStream fromServer;
+		DataOutputStream toServer;
+		DataInputStream fromServer;
 
-    	FileInputStream fileInputStream;
-        BufferedInputStream bufferedFileInputStream;
+		FileInputStream fileInputStream;
+		BufferedInputStream bufferedFileInputStream;
 
 		int acknowledgement = 0;
 
@@ -50,36 +49,36 @@ public class ClientCP2 {
 			fromServer = new DataInputStream(clientSocket.getInputStream());
 
 			// Send nonce
-			System.out.println("Sending nonce to server...");
+			//System.out.println("Sending nonce to server...");
 			int nonce = random.nextInt();
 			toServer.writeInt(4);
 			toServer.writeInt(nonce);
 
 			// Receive encrypted nonce
-			System.out.println("Receiving encrypted nonce...");
+			//System.out.println("Receiving encrypted nonce...");
 			numBytes = fromServer.readInt();
 			byte[] encrypted_nonce = new byte[numBytes];
 			fromServer.read(encrypted_nonce, 0, numBytes);
 
 			// Ask for certification
-			System.out.println("Asking for certificate...");
+			//System.out.println("Asking for certificate...");
 			toServer.writeInt(5);
 
 			// Read certificate
-			System.out.println("Receiving certificate...");
+			//System.out.println("Receiving certificate...");
 			numBytes = fromServer.readInt();
 			byte[] certBytes = new byte[numBytes];
 			fromServer.readFully(certBytes,0,numBytes);
 			ServerCert = (X509Certificate) cf.generateCertificate(new ByteArrayInputStream(certBytes));
 
 			// Verify that cert is correct
-			System.out.println("Verifying certificate...");
+			//System.out.println("Verifying certificate...");
 			PublicKey CAKey = CA.getPublicKey();
 			ServerCert.checkValidity();
 			ServerCert.verify(CAKey);
 
 			// Verify nonce
-			System.out.println("Verifying encrypted nonce...");
+			//System.out.println("Verifying encrypted nonce...");
 			Cipher decipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
 			PublicKey publicKey = ServerCert.getPublicKey();
 			decipher.init(Cipher.DECRYPT_MODE, publicKey);
@@ -94,20 +93,20 @@ public class ClientCP2 {
 				cipher.init(Cipher.ENCRYPT_MODE, publicKey);
 
 				// Generate sessionKey
-				System.out.println("Generating Session Key...");
+				//System.out.println("Generating Session Key...");
 				KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
 				SecureRandom secureRandom = new SecureRandom();
 				keyGenerator.init(secureRandom);
 				SecretKey sessionKey = keyGenerator.generateKey();
 				byte[] encryptedSessionKey = cipher.doFinal(sessionKey.getEncoded());
 
-				System.out.println("Sending Session Key..." + sessionKey.toString() );
+				//System.out.println("Sending Session Key..." + sessionKey.toString() );
 				toServer.writeInt(6);
 				toServer.writeInt(encryptedSessionKey.length);
 				toServer.write(encryptedSessionKey);
 
 				// Send the filename
-                System.out.println("Sending file...");
+				//System.out.println("Sending file...");
 				toServer.writeInt(0);
 				byte[] filenameBytes = filename.getBytes();
 
@@ -128,7 +127,7 @@ public class ClientCP2 {
 				// Send the file
 				int i = 1;
 				for (boolean fileEnded = false; !fileEnded;) {
-					System.out.println("Sending block " + i);
+					//System.out.println("Sending block " + i);
 					numBytes = bufferedFileInputStream.read(fromFileBuffer);
 					fileEnded = numBytes < 117;
 
@@ -156,6 +155,22 @@ public class ClientCP2 {
 
 
 		long timeTaken = System.nanoTime() - timeStarted;
-		System.out.println("Program took: " + timeTaken/1000000.0 + "ms to run");
+		System.out.println("Program took: " + timeTaken/1000000.0 + "ms to run\n\n\n");
+	}
+
+	public static void main(String[] args) throws Exception {
+		String precursor = "C:\\Users\\Kim\\Desktop\\SecureTransfer\\Starter FTP Code Without Security\\";
+
+		File dir = new File("testfiles");
+		File[] directoryListing = dir.listFiles();
+		if (directoryListing != null) {
+			int i = 0;
+			for (File child : directoryListing) {
+				i++;
+				System.out.println("Test " + String.valueOf(i) + ":");
+				run(child.getName(), "testfiles/" + child.getName());
+				Thread.sleep(1000);
+			}
+		}
 	}
 }
