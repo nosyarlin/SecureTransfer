@@ -34,9 +34,6 @@ public class ServerCP1 {
 		CertificateFactory cf = CertificateFactory.getInstance("X.509");
 		X509Certificate CAcert =(X509Certificate)cf.generateCertificate(fis);
 
-		// Prepare public key
-		PublicKey publicKey = CAcert.getPublicKey();
-
 		// Prepare private key
 		String privateKeyFileName = "privateServer.der";
 		Path path = Paths.get(privateKeyFileName);
@@ -54,10 +51,6 @@ public class ServerCP1 {
 		// Prepare decipher
 		Cipher decipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
 		decipher.init(Cipher.DECRYPT_MODE, privateKey);
-
-		SecretKeySpec decryptedSecretKey = new SecretKeySpec(new byte[16],"AES");
-		Cipher decipher2 = Cipher.getInstance("AES/CBC/PKCS5Padding");
-
 
 		try {
 			// Create connection
@@ -95,22 +88,6 @@ public class ServerCP1 {
 					toClient.write(encoded);
 				}
 
-				// If the packet is for verifying message via sessionKey
-				else if(packetType == 6){
-					System.out.println("Recieving Session Key...");
-					int byteSize = fromClient.readInt();
-					byte[] encryptedKey = new byte[byteSize];
-					fromClient.readFully(encryptedKey,0,byteSize);
-
-					// Deciphering the sessino key
-					Cipher decryption = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-					decryption.init(Cipher.DECRYPT_MODE, privateKey);
-					decryptedSecretKey = new SecretKeySpec(decryption.doFinal(encryptedKey),"AES");
-
-					System.out.printf("Session Key is %s%n", decryptedSecretKey.toString());
-					decipher2.init(Cipher.DECRYPT_MODE, decryptedSecretKey,new IvParameterSpec(new byte[16]));
-				}
-
 				// If the packet is for transferring the filename
 				else if (packetType == 0) {
 
@@ -134,10 +111,8 @@ public class ServerCP1 {
 					while (total < numBytes) {
 						total += fromClient.read(encrypted_block, total, numBytes-total);
 					}
+
 					// decrypt file
-					// CP2
-					//byte[] block = decipher2.doFinal(encrypted_block);
-					// CP1
 					byte[] block = decipher.doFinal(encrypted_block);
 
 					if (numBytes > 0)
