@@ -167,7 +167,7 @@ public class ClientCP2 {
 			int i = 0;
 			for (File child : directoryListing) {
 				i++;
-				System.out.println("Test " + String.valueOf(i) + ":");
+				System.out.println("Test " + String.valueOf(i) + " with filesize " + child.length()/1024 + "kb :");
 				run(child.getName(), "testfiles/" + child.getName());
 				Thread.sleep(1000);
 			}
