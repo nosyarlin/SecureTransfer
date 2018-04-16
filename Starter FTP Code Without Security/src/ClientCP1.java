@@ -12,7 +12,7 @@ import java.security.cert.X509Certificate;
 import java.util.Arrays;
 import java.util.Random;
 
-public class ClientWithoutSecurity {
+public class ClientCP1 {
 
 	public static void main(String[] args) {
 
