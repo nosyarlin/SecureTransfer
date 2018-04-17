@@ -15,8 +15,8 @@
       <file leaf-file-name="ClientCP1.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ClientCP1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="150" column="61" lean-forward="true" selection-start-line="150" selection-start-column="61" selection-end-line="150" selection-end-column="61" />
+            <state relative-caret-position="102">
+              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -25,8 +25,8 @@
       <file leaf-file-name="ClientCP2.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ClientCP2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="488">
-              <caret line="174" column="5" lean-forward="true" selection-start-line="160" selection-start-column="4" selection-end-line="174" selection-end-column="5" />
+            <state relative-caret-position="332">
+              <caret line="157" column="81" lean-forward="false" selection-start-line="157" selection-start-column="81" selection-end-line="157" selection-end-column="81" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -37,8 +37,8 @@
       <file leaf-file-name="ServerCP1.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ServerCP1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="19" column="45" lean-forward="false" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
+            <state relative-caret-position="133">
+              <caret line="121" column="31" lean-forward="false" selection-start-line="121" selection-start-column="31" selection-end-line="121" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -47,8 +47,8 @@
       <file leaf-file-name="ServerCP2.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ServerCP2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="157" column="8" lean-forward="false" selection-start-line="157" selection-start-column="8" selection-end-line="159" selection-end-column="9" />
+            <state relative-caret-position="238">
+              <caret line="148" column="45" lean-forward="true" selection-start-line="148" selection-start-column="45" selection-end-line="148" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -72,9 +72,9 @@
         <option value="$PROJECT_DIR$/src/ServerWithoutSecurity.java" />
         <option value="$PROJECT_DIR$/src/ClientWithoutSecurity.java" />
         <option value="$PROJECT_DIR$/src/ClientWithoutSecurity_CP2.java" />
+        <option value="$PROJECT_DIR$/src/ServerCP1.java" />
         <option value="$PROJECT_DIR$/src/ServerCP2.java" />
         <option value="$PROJECT_DIR$/src/ClientCP2.java" />
-        <option value="$PROJECT_DIR$/src/ServerCP1.java" />
         <option value="$PROJECT_DIR$/src/ClientCP1.java" />
       </list>
     </option>
@@ -99,6 +99,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -120,9 +122,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -141,10 +141,10 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ServerCP2">
-    <configuration name="ClientCP2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.ClientCP1">
+    <configuration name="ClientCP1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="ClientCP2" />
+      <option name="MAIN_CLASS_NAME" value="ClientCP1" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -156,9 +156,9 @@
       <module name="Starter FTP Code Without Security" />
       <envs />
     </configuration>
-    <configuration name="ClientWithoutSecurity" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="ClientCP2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="ClientWithoutSecurity" />
+      <option name="MAIN_CLASS_NAME" value="ClientCP2" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -295,18 +295,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.ServerWithoutSecurity" />
-      <item index="1" class="java.lang.String" itemvalue="Application.ClientWithoutSecurity" />
-      <item index="2" class="java.lang.String" itemvalue="Application.ServerCP1" />
-      <item index="3" class="java.lang.String" itemvalue="Application.ServerCP2" />
-      <item index="4" class="java.lang.String" itemvalue="Application.ClientCP2" />
+      <item index="1" class="java.lang.String" itemvalue="Application.ServerCP1" />
+      <item index="2" class="java.lang.String" itemvalue="Application.ServerCP2" />
+      <item index="3" class="java.lang.String" itemvalue="Application.ClientCP2" />
+      <item index="4" class="java.lang.String" itemvalue="Application.ClientCP1" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.ServerCP2" />
-        <item index="1" class="java.lang.String" itemvalue="Application.ClientCP2" />
-        <item index="2" class="java.lang.String" itemvalue="Application.ServerCP1" />
-        <item index="3" class="java.lang.String" itemvalue="Application.ServerWithoutSecurity" />
-        <item index="4" class="java.lang.String" itemvalue="Application.ClientWithoutSecurity" />
+        <item index="0" class="java.lang.String" itemvalue="Application.ClientCP1" />
+        <item index="1" class="java.lang.String" itemvalue="Application.ServerCP1" />
+        <item index="2" class="java.lang.String" itemvalue="Application.ClientCP2" />
+        <item index="3" class="java.lang.String" itemvalue="Application.ServerCP2" />
+        <item index="4" class="java.lang.String" itemvalue="Application.ServerWithoutSecurity" />
       </list>
     </recent_temporary>
   </component>
@@ -338,7 +338,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -383,22 +383,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ServerWithoutSecurity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="96" column="0" lean-forward="true" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ClientWithoutSecurity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="93" column="50" lean-forward="true" selection-start-line="93" selection-start-column="50" selection-end-line="93" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ServerWithoutSecurity.java" />
+    <entry file="file://$PROJECT_DIR$/src/ClientWithoutSecurity.java" />
     <entry file="file://$PROJECT_DIR$/src/ClientWithoutSecurity.java" />
     <entry file="file://$PROJECT_DIR$/src/ServerWithoutSecurity.java" />
     <entry file="file://$PROJECT_DIR$/src/ClientWithoutSecurity.java" />
@@ -442,22 +428,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ServerWithoutSecurity.java" />
     <entry file="file://$PROJECT_DIR$/src/ClientWithoutSecurity.java" />
-    <entry file="file://$PROJECT_DIR$/CP1/ClientWithoutSecurity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CP1/ServerWithoutSecurity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="29" column="47" lean-forward="false" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/CP1/ClientWithoutSecurity.java" />
+    <entry file="file://$PROJECT_DIR$/CP1/ServerWithoutSecurity.java" />
     <entry file="file://$PROJECT_DIR$/src/ClientWithoutSecurity.java" />
     <entry file="file://$PROJECT_DIR$/src/ServerWithoutSecurity.java" />
     <entry file="file://$PROJECT_DIR$/src/ClientWithoutSecurity.java" />
@@ -486,40 +458,39 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-454">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ServerCP2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="157" column="8" lean-forward="false" selection-start-line="157" selection-start-column="8" selection-end-line="159" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ServerCP1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="19" column="45" lean-forward="false" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
+        <state relative-caret-position="238">
+          <caret line="148" column="45" lean-forward="true" selection-start-line="148" selection-start-column="45" selection-end-line="148" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ClientCP2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="174" column="5" lean-forward="true" selection-start-line="160" selection-start-column="4" selection-end-line="174" selection-end-column="5" />
+        <state relative-caret-position="332">
+          <caret line="157" column="81" lean-forward="false" selection-start-line="157" selection-start-column="81" selection-end-line="157" selection-end-column="81" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ServerCP1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="121" column="31" lean-forward="false" selection-start-line="121" selection-start-column="31" selection-end-line="121" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ClientCP1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="150" column="61" lean-forward="true" selection-start-line="150" selection-start-column="61" selection-end-line="150" selection-end-column="61" />
+        <state relative-caret-position="102">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
       </provider>
