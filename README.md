@@ -39,6 +39,8 @@ java ClientCP2.java 10.12.90.175 rr.txt
 We tested both CP1 and CP2 over 350 text files of varying sizes and plot the file transfer time to compare the performance of the two different encryption methods. 
 
 Here are the results.
+
+
 ![alt text][plot]
 
 [plot]: https://github.com/nosyarlin/SecureTransfer/blob/master/plot.png?raw=true
