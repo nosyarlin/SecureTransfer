@@ -45,4 +45,6 @@ Here are the results.
 
 [plot]: https://github.com/nosyarlin/SecureTransfer/blob/master/plot.png?raw=true
 
+For the high quality and interactive version, visit http://rpubs.com/nosyarlin/Programming_Assignment2
+
 Note: The programs were written and tested on a Mac machine. 
