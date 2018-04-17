@@ -35,6 +35,29 @@ javac ClientCP2.java
 java ClientCP2.java 10.12.90.175 rr.txt
 ```
 
+### Specifications
+Our program has two parts. Authentication (AP) and Encrypted Data Transfer (CP1 and CP2). 
+
+Here are the specs of AP:
+
+![alt text][ap]
+
+[ap]: https://github.com/nosyarlin/SecureTransfer/blob/master/AP%20Diagram.png?raw=true
+
+
+Here are the specs of CP1:
+
+![alt text][cp1]
+
+[cp1]: https://github.com/nosyarlin/SecureTransfer/blob/master/CP1%20Diagram.png?raw=true
+
+
+Here are the specs of CP2:
+
+![alt text][cp2]
+
+[cp2]: https://github.com/nosyarlin/SecureTransfer/blob/master/CP2%20Diagram.png?raw=true
+
 ### Sending Speed
 We tested both CP1 and CP2 over 350 text files of varying sizes and plot the file transfer time to compare the performance of the two different encryption methods. 
 
@@ -46,5 +69,10 @@ Here are the results.
 [plot]: https://github.com/nosyarlin/SecureTransfer/blob/master/plot.png?raw=true
 
 For the high quality and interactive version, visit http://rpubs.com/nosyarlin/Programming_Assignment2
+
+
+
+
+
 
 Note: The programs were written and tested on a Mac machine. 
