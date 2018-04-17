@@ -58,6 +58,11 @@ Here are the specs of CP2:
 
 [cp2]: https://github.com/nosyarlin/SecureTransfer/blob/master/CP2%20Diagram.png?raw=true
 
+
+### Why Nonce?
+If you have seen the specs of our program, you might have noticed that we used a nonce during authentication. This is to prevent the possibility of a playback attack. With the nonce, an attacker can no longer record the message encrypted using the server's private key, and send it to the client at a later time, pretending to be the correct server. 
+
+
 ### Sending Speed
 We tested both CP1 and CP2 over 350 text files of varying sizes and plot the file transfer time to compare the performance of the two different encryption methods. 
 
