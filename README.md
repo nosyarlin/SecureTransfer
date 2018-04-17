@@ -1,10 +1,10 @@
 # Secure-File-Transfer
 
-## The Assignment
+### The Assignment
 
 In this assignment, we implemented authentication and sending of encrypted data over a network. 
 
-## How To Run
+### How To Run
 
 Running the programs is simple. First clone the repository and go to the folder "src" on your command prompt or terminal. 
 
@@ -35,5 +35,10 @@ javac ClientCP2.java
 java ClientCP2.java 10.12.90.175 rr.txt
 ```
 
+### Sending Speed
+We tested both CP1 and CP2 over 350 text files of varying sizes and plot the file transfer time to compare the performance of the two different encryption methods. 
+
+Here are the results.
+![alt text][plot.png]
 
 Note: The programs were written and tested on a Mac machine. 
