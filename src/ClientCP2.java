@@ -4,6 +4,8 @@ import javax.crypto.SecretKey;
 import java.io.*;
 import java.net.Socket;
 import java.nio.ByteBuffer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.PublicKey;
 import java.security.SecureRandom;
 import java.security.cert.CertificateFactory;
@@ -14,13 +16,13 @@ import java.util.Random;
 public class ClientCP2 {
 
 	public static void main(String[] args) throws Exception {
-		String filename = "rr.txt";
+		String filename = "Cracking the Coding Interview, 6th Edition.pdf";
 		// Change the name of the file base on your OS
 		//String file = "C:\\Users\\Kim\\Desktop\\SecureTransfer\\Starter FTP Code Without Security\\rr.txt";
 		//String file = args[1];
 		//String ip = args[0];
 
-		String file = "rr.txt";
+		String file = "Cracking the Coding Interview, 6th Edition.pdf";
 		String ip = "localhost";
 
 		int numBytes = 0;
@@ -111,6 +113,9 @@ public class ClientCP2 {
 				toServer.writeInt(encryptedSessionKey.length);
 				toServer.write(encryptedSessionKey);
 
+				//toServer.writeInt(sessionKey.getEncoded().length);
+				//toServer.write(sessionKey.getEncoded());
+
 				// Send the filename
 				System.out.println("Sending file...");
 				toServer.writeInt(0);
@@ -124,26 +129,20 @@ public class ClientCP2 {
 				fileInputStream = new FileInputStream(file);
 				bufferedFileInputStream = new BufferedInputStream(fileInputStream);
 
-				byte [] fromFileBuffer = new byte[117];
+				//byte [] fromFileBuffer = new byte[117];
 
 				// Preparing cipher 2 (AES)
-				Cipher cipher2 = Cipher.getInstance("AES/CBC/PKCS7Padding");
+				Cipher cipher2 = Cipher.getInstance("AES/ECB/PKCS5Padding");
 				cipher2.init(Cipher.ENCRYPT_MODE,sessionKey);
 
 				// Send the file
-				int i = 1;
-				for (boolean fileEnded = false; !fileEnded;) {
-					//System.out.println("Sending block " + i);
-					numBytes = bufferedFileInputStream.read(fromFileBuffer);
-					fileEnded = numBytes < 117;
+				byte[] fromFileBuffer = Files.readAllBytes(Paths.get(filename));
+				byte[] encryptedBytes = cipher2.doFinal(fromFileBuffer);
+				toServer.writeInt(1);
+				toServer.writeInt(encryptedBytes.length);
+				toServer.write(encryptedBytes);
+				toServer.flush();
 
-					toServer.writeInt(1);
-					byte[] encryptedBuffer = cipher2.doFinal(fromFileBuffer);
-					toServer.writeInt(encryptedBuffer.length);
-					toServer.write(encryptedBuffer, 0, encryptedBuffer.length);
-					toServer.flush();
-					i++;
-				}
 				System.out.println("File sent.");
 
 				bufferedFileInputStream.close();

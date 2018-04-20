@@ -55,7 +55,7 @@ public class ServerCP2 {
 		decipherRSA.init(Cipher.DECRYPT_MODE, privateKey);
 
 		SecretKeySpec decryptedSecretKey;
-		Cipher decipherAES = Cipher.getInstance("AES/CBC/PKCS7Padding");
+		Cipher decipherAES = Cipher.getInstance("AES/ECB/PKCS5Padding");
 
 
 		try {
@@ -109,7 +109,8 @@ public class ServerCP2 {
 
 					// Deciphering the session key
 					decryptedSecretKey = new SecretKeySpec(decipherRSA.doFinal(encryptedKey),"AES");
-					decipherAES.init(Cipher.DECRYPT_MODE, decryptedSecretKey,new IvParameterSpec(new byte[16]));
+					//decryptedSecretKey = new SecretKeySpec(encryptedKey, "AES");
+					decipherAES.init(Cipher.DECRYPT_MODE, decryptedSecretKey);
 				}
 
 				// If the packet is for transferring the filename
@@ -126,8 +127,6 @@ public class ServerCP2 {
 
 					// If the packet is for transferring a chunk of the file
 				} else if (packetType == 1) {
-					i++;
-					//System.out.println("receiving block " + i);
 					int numBytes = fromClient.readInt();
 					byte[] encrypted_block = new byte[numBytes];
 					int total = 0;
