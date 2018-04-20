@@ -15,27 +15,27 @@
       <file leaf-file-name="ClientCP1.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ClientCP1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="20" column="27" lean-forward="false" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+            <state relative-caret-position="222">
+              <caret line="28" column="10" lean-forward="false" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientCP2.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ClientCP2.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ClientCP2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="142" column="47" lean-forward="true" selection-start-line="142" selection-start-column="47" selection-end-line="142" selection-end-column="47" />
+            <state relative-caret-position="90">
+              <caret line="19" column="8" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ServerCP2.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ServerCP2.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ServerCP2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1695">
+            <state relative-caret-position="-206">
               <caret line="128" column="45" lean-forward="false" selection-start-line="128" selection-start-column="45" selection-end-line="128" selection-end-column="45" />
               <folding />
             </state>
@@ -73,9 +73,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/ServerCP2.java" />
         <option value="$PROJECT_DIR$/ClientCP1.java" />
         <option value="$PROJECT_DIR$/ClientCP2.java" />
-        <option value="$PROJECT_DIR$/ServerCP2.java" />
       </list>
     </option>
   </component>
@@ -392,26 +392,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ServerCP2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1695">
-          <caret line="128" column="45" lean-forward="false" selection-start-line="128" selection-start-column="45" selection-end-line="128" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ClientCP1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="20" column="27" lean-forward="false" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+        <state relative-caret-position="222">
+          <caret line="28" column="10" lean-forward="false" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ClientCP2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="142" column="47" lean-forward="true" selection-start-line="142" selection-start-column="47" selection-end-line="142" selection-end-column="47" />
+        <state relative-caret-position="90">
+          <caret line="19" column="8" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ServerCP2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-206">
+          <caret line="128" column="45" lean-forward="false" selection-start-line="128" selection-start-column="45" selection-end-line="128" selection-end-column="45" />
           <folding />
         </state>
       </provider>

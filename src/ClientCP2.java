@@ -16,14 +16,14 @@ import java.util.Random;
 public class ClientCP2 {
 
 	public static void main(String[] args) throws Exception {
-		String filename = "Cracking the Coding Interview, 6th Edition.pdf";
+		String filename = "rr.txt";
 		// Change the name of the file base on your OS
 		//String file = "C:\\Users\\Kim\\Desktop\\SecureTransfer\\Starter FTP Code Without Security\\rr.txt";
-		//String file = args[1];
-		//String ip = args[0];
+		String file = args[1];
+		String ip = args[0];
 
-		String file = "Cracking the Coding Interview, 6th Edition.pdf";
-		String ip = "localhost";
+		//String file = "Cracking the Coding Interview, 6th Edition.pdf";
+		//String ip = "localhost";
 
 		int numBytes = 0;
 
