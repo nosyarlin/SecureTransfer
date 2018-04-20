@@ -55,7 +55,7 @@ public class ServerCP2 {
 		decipherRSA.init(Cipher.DECRYPT_MODE, privateKey);
 
 		SecretKeySpec decryptedSecretKey;
-		Cipher decipherAES = Cipher.getInstance("AES/CBC/PKCS5Padding");
+		Cipher decipherAES = Cipher.getInstance("AES/CBC/PKCS7Padding");
 
 
 		try {
@@ -66,6 +66,7 @@ public class ServerCP2 {
 			System.out.println("Connection established.");
 			fromClient = new DataInputStream(connectionSocket.getInputStream());
 			toClient = new DataOutputStream(connectionSocket.getOutputStream());
+			int i = 0;
 
 			while (!connectionSocket.isClosed()) {
 
@@ -99,7 +100,12 @@ public class ServerCP2 {
 					System.out.println("Receiving Session Key...");
 					int byteSize = fromClient.readInt();
 					byte[] encryptedKey = new byte[byteSize];
-					fromClient.readFully(encryptedKey,0,byteSize);
+					int total = 0;
+
+					// keep reading until everything has been received
+					while (total < byteSize) {
+						total += fromClient.read(encryptedKey, total, byteSize-total);
+					}
 
 					// Deciphering the session key
 					decryptedSecretKey = new SecretKeySpec(decipherRSA.doFinal(encryptedKey),"AES");
@@ -115,12 +121,13 @@ public class ServerCP2 {
 					byte[] filename = new byte[numBytes];
 					fromClient.readFully(filename, 0, numBytes);
 
-					fileOutputStream = new FileOutputStream(new String(filename, 0, numBytes));
+					fileOutputStream = new FileOutputStream("recv/" + new String(filename, 0, numBytes));
 					bufferedFileOutputStream = new BufferedOutputStream(fileOutputStream);
 
 					// If the packet is for transferring a chunk of the file
 				} else if (packetType == 1) {
-
+					i++;
+					//System.out.println("receiving block " + i);
 					int numBytes = fromClient.readInt();
 					byte[] encrypted_block = new byte[numBytes];
 					int total = 0;

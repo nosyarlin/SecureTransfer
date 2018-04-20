@@ -22,8 +22,11 @@ public class ClientCP1 {
 		String filename = "rr.txt";
 		// Change the name of the file base on your OS
 		//String file = "C:\\Users\\Kim\\Desktop\\SecureTransfer\\Starter FTP Code Without Security\\rr.txt";
-		String file = args[1];
-		String ip = args[0];
+		//String file = args[1];
+		//String ip = args[0];
+
+		String file = "rr.txt";
+		String ip = "localhost";
 
 		int numBytes = 0;
 

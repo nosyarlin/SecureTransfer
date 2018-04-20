@@ -17,8 +17,11 @@ public class ClientCP2 {
 		String filename = "rr.txt";
 		// Change the name of the file base on your OS
 		//String file = "C:\\Users\\Kim\\Desktop\\SecureTransfer\\Starter FTP Code Without Security\\rr.txt";
-		String file = args[1];
-		String ip = args[0];
+		//String file = args[1];
+		//String ip = args[0];
+
+		String file = "rr.txt";
+		String ip = "localhost";
 
 		int numBytes = 0;
 
@@ -124,7 +127,7 @@ public class ClientCP2 {
 				byte [] fromFileBuffer = new byte[117];
 
 				// Preparing cipher 2 (AES)
-				Cipher cipher2 = Cipher.getInstance("AES/CBC/PKCS5Padding");
+				Cipher cipher2 = Cipher.getInstance("AES/CBC/PKCS7Padding");
 				cipher2.init(Cipher.ENCRYPT_MODE,sessionKey);
 
 				// Send the file
