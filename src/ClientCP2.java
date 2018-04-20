@@ -39,8 +39,7 @@ public class ClientCP2 {
 
 		long timeStarted = System.nanoTime();
 
-		Random random = new Random();
-		random.setSeed(timeStarted);
+		SecureRandom random = new SecureRandom();
 
 		try {
 			// Prepare cert

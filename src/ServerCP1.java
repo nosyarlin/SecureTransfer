@@ -101,7 +101,7 @@ public class ServerCP1 {
 
 					// If the packet is for transferring a chunk of the file
 				} else if (packetType == 1) {
-
+					int actual = fromClient.readInt();
 					int numBytes = fromClient.readInt();
 					byte[] encrypted_block = new byte[numBytes];
 					int total = 0;
@@ -115,7 +115,7 @@ public class ServerCP1 {
 					byte[] block = decipher.doFinal(encrypted_block);
 
 					if (numBytes > 0)
-						bufferedFileOutputStream.write(block, 0, block.length);
+						bufferedFileOutputStream.write(block, 0, actual);
 				}
 
 				// if the packet is for closing connection

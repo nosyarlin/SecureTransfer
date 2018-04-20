@@ -42,8 +42,7 @@ public class ClientCP1 {
 
 		long timeStarted = System.nanoTime();
 
-		Random random = new Random();
-		random.setSeed(timeStarted);
+		SecureRandom random = new SecureRandom();
 
 		try {
 			// Prepare cert
@@ -127,6 +126,7 @@ public class ClientCP1 {
 
 					toServer.writeInt(1);
 					byte[] encryptedBuffer = cipher.doFinal(fromFileBuffer);
+					toServer.writeInt(numBytes);
 					toServer.writeInt(encryptedBuffer.length);
 					toServer.write(encryptedBuffer, 0, encryptedBuffer.length);
 					toServer.flush();
